@@ -1,0 +1,12 @@
+Host:
+ep-green-recipe-aogm10kt.c-2.ap-southeast-1.aws.neon.tech
+Database:
+neondb
+Role:
+neondb_owner
+Password:
+npg_0EbMqCwI2vA
+Pooler host
+ep-green-recipe-aogm10kt-pooler.c-2.ap-southeast-1.aws.neon.tech
+
+postgresql://neondb_owner:npg_0EbMqCwI2vAY@ep-green-recipe-aogm10kt.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
