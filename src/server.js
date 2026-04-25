@@ -1,27 +1,27 @@
 import express from 'express'
 import movieRoutes from './routes/movieRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 import {config} from 'dotenv'
 import { connectDB, disconnectDB } from './config/db.js'
 
-
-const app = express()
 config()
 connectDB()
-
+const app = express()
 const PORT = 5001
+//middleware for body parsing
+app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.json({msg: "hello"})
-})
 
+//API routes
 app.use('/movies', movieRoutes)
+app.use('/auth', authRoutes)
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
 
-// handle unhandled promise rejectrions (e.g., database connection error) 
-process.on('undandledRejection', (err) => {
+// handle unhandled promise rejections (e.g., database connection error) 
+process.on('unhandledRejection', (err) => {
     console.error("Unhandled rejection:", err);
     server.close(async () => {
         await disconnectDB()
@@ -30,8 +30,8 @@ process.on('undandledRejection', (err) => {
 })
 
 // handle uncaught exception
-process.on('uncoughtException', async (err) => {
-    console.error("Uncought exception:", err);
+process.on('uncaughtException', async (err) => {
+    console.error("Uncaught exception:", err);
         await disconnectDB()
         process.exit(1)
     })
