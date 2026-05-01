@@ -5,6 +5,9 @@ const router = express.Router()
 router.get("/hello", (req, res) => {
     res.json({msg: "get movie route UPDATED"})
 })
+router.get("/test-wf", (req, res) => {
+    res.json({msg: "testing workflow"})
+})
 router.post("/hello", (req, res) => {
     res.json({msg: "post movie route UPDATED"})
 })
