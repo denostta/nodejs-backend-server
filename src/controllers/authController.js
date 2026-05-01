@@ -16,7 +16,7 @@ const  register = async (req, res) => {
 
     // response if user already exist in database
     if (userExist){
-        res.status(400).json({error: "email already exist"})
+        return res.status(400).json({error: "email already exist"})
     }
 
     //hashpasssword
@@ -63,13 +63,13 @@ const login = async (req, res) => {
     )
     // response if invalid email
     if (!user) {
-        res.status(400).json({error: "Invalid email or password"})
+        return res.status(400).json({error: "Invalid email or password"})
     }
 
     // verify the password
     const isPasswordValid = await bcrypt.compare(password, user.password)
     if (!isPasswordValid) {
-        res.status(401).json({error: "Invalid Email or password"})
+        return res.status(401).json({error: "Invalid Email or password"})
     }
 
     // generate JWT token
