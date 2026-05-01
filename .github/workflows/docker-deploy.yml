@@ -39,7 +39,7 @@ jobs:
         push: true
         tags: |
           ${{ secrets.DOCKER_USERNAME}}/nodejs-backend-server:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/your-repo-name:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-backend-server:${{ github.sha }}
         cache-from: type=gha           # Use GitHub Actions cache to speed up builds
         cache-to: type=gha,mode=max
 
