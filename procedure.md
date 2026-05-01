@@ -117,3 +117,29 @@
     - run seed
         - npm run seed:movies
 
+## DOCKERIZE THE APP
+    - see creating_image.md
+    - deploying_image_INrender.txt
+    - push_image_dockerhub.md
+    - auto_deploy.txt
+    - deploy.sh
+    - modify the .gitgnore
+    - create .dockerignore
+
+## WATCHLIST ROUTE
+ - create watchlistRoutes.js file in routers folder
+ - copy format for router in authRoutes.js and edit for watchlist routes.
+ - create watchlistController.js file in controllers folder
+    - create addToWatchlist function
+        - verify if the movies exist using movie id
+        - response if movie not existing in the movie table in db
+        - check if movie is already in the watchlist
+        - response if movie is already in watchlistItem table in database
+        - create new watchlistItem
+        - response if successful
+
+## MIDDLEWARE
+    - create middleware folder
+    - create authMiddleware.js file
+    - read if the token is in request
+    - verify if the token is valid

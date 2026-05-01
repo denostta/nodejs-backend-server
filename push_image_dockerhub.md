@@ -18,7 +18,7 @@ pull image anywhere:
 
 
 
-## BEST WORKFLOW PRACTICE IN UPDATINF TAGS OF DOCKER IMAGES IN DOCKERHUB
+## BEST WORKFLOW PRACTICE IN UPDATING TAGS OF DOCKER IMAGES IN DOCKERHUB
 first time:
     - docker build -t nodejs-backend-server:latest .
     - docker tag nodejs-backend-server:latest yourusername/nodejs-backend-server:latest
@@ -46,3 +46,23 @@ third time:
         - nodejs-backend-server:latest → newest image 
         - nodejs-backend-server:v2.0   → second image safely saved 
         - nodejs-backend-server:v1.0   → first image safely saved 
+
+## One Tip to Make It Even Easier
+You can make a simple script update-image.sh so you don't have to type all commands every time:
+bash#!/bin/bash
+
+VERSION=$1  # pass version as argument e.g. v2.0
+
+echo "Saving old latest as $VERSION..."
+docker pull yourusername/nodejs-backend-server:latest
+docker tag yourusername/nodejs-backend-server:latest yourusername/nodejs-backend-server:$VERSION
+docker push yourusername/nodejs-backend-server:$VERSION
+
+echo "Building and pushing new latest..."
+docker build -t nodejs-backend-server:latest .
+docker tag nodejs-backend-server:latest yourusername/nodejs-backend-server:latest
+docker push yourusername/nodejs-backend-server:latest
+
+echo "Done! Docker Hub now has :latest and :$VERSION ✅"
+Run it like this:
+bashbash update-image.sh v2.0
